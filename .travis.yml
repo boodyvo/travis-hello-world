@@ -1,3 +1,6 @@
 language: python
-install: sudo ./install.sh
+install:
+ - pwd
+ - whoami
+ - sudo ./install.sh
 script: python3 test.py
