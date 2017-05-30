@@ -1,2 +1,2 @@
-install: ./install.sh
-script: python3 test.pyboodyvo@gmail.com
+before_install: ./install.sh
+script: python3 test.py
