@@ -1,5 +1,2 @@
-before_install:
- - pwd
- - whoami
- - sudo bash install.sh
+before_install: sudo bash install.sh
 script: python3 test.py
