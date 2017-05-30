@@ -1,17 +1,5 @@
 #!/bin/bash
 
-printf 'export GOVERSION=1.7.1\n' >> ~/.bashrc
-printf 'export GOPATH=$HOME/golang-source\n' >> ~/.bashrc
-printf 'export PATH=$PATH:/usr/local/go/bin\n' >> ~/.bashrc
-printf 'export PATH=$PATH:$GOPATH/bin\n' >> ~/.bashrc
-source ~/.bashrc
-echo $GOVERSION
-echo $PATH
-export GOVERSION=1.7.1
-export GOPATH=$HOME/golang-source
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
-echo $GOVERSION
-echo $PATH
 wget https://storage.googleapis.com/golang/go${GOVERSION}.linux-amd64.tar.gz && \
 tar -C /usr/local -xzf go${GOVERSION}.linux-amd64.tar.gz&& \
 rm go${GOVERSION}.linux-amd64.tar.gz
@@ -34,3 +22,22 @@ git checkout -b python-grpc-client
 git pull origin python-grpc-client
 glide install
 ./build.sh
+
+mkdir -p $SHAREDVOLUME
+
+apt-get install --yes docker.io
+
+cd $SIMNETDATA/docker
+./build_all_images.sh
+
+apt-get install --yes python3-pip
+pip3 install virtualenv virtualenvwrapper
+printf 'export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3\n' >> ~/.bashrc
+printf 'source /usr/local/bin/virtualenvwrapper.sh\n' >> ~/.bashrc
+source ~/.bashrc
+mkvirtualenv docker-compose
+pip install docker-compose
+
+workon docker-compose
+cd $SIMNETDATA
+lnd-simnt-env &
