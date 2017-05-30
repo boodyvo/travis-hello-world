@@ -1,5 +1,5 @@
 before_install:
  - pwd
  - whoami
- - install.sh
+install: sudo install.sh
 script: python3 test.py
