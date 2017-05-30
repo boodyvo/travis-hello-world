@@ -1,6 +1,3 @@
 language: python
-install:
- - pwd
- - whoami
- - echo "Hello"
-script: python3 test.py
+install: ./install.sh
+script: python3 test.pyboodyvo@gmail.com
