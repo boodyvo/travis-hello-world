@@ -1,3 +1,2 @@
-language: python
 install: ./install.sh
 script: python3 test.pyboodyvo@gmail.com
