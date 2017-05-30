@@ -1,2 +1,5 @@
-before_install: ./install.sh
+before_install:
+ - pwd
+ - whoami
+ - install.sh
 script: python3 test.py
